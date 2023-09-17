@@ -1,0 +1,23 @@
+.MangaCatalog-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.MangaCatalog-container .catalog{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    justify-content: center;
+    width: 70%;
+    margin-right: 20px;
+    border-radius: 7px;
+}
+
+
+.MangaCatalog-container .filter{
+    display: flex;
+    flex: auto;
+    padding: 30px;
+    border-radius: 7px;
+    background-color: #2f2f2f;
+}

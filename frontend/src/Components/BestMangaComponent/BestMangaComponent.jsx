@@ -1,17 +1,18 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BigCartManga from "../BigCartManga/BigCartManga.jsx";
 import { useQueryGetBooks } from "../../hooks/useQueryGetBooks.js";
 import "./BestMangaComponent-CSS.css";
-function BestMangaComponent({data, isLoading}) {
+function BestMangaComponent({ data, isLoading }) {
   const containerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
   const handleMouseDown = (event) => {
-      setIsDragging(true);
-      setStartX(event.pageX - containerRef.current.offsetLeft);
-      setScrollLeft(containerRef.current.scrollLeft);
+    setIsDragging(true);
+    setStartX(event.pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft);
+    console.log("11232313");
   };
 
   const handleMouseMove = (event) => {
@@ -23,11 +24,8 @@ function BestMangaComponent({data, isLoading}) {
   };
 
   const handleMouseUp = () => {
-      setIsDragging(false);
+    setIsDragging(false);
   };
-
-
-
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -42,7 +40,10 @@ function BestMangaComponent({data, isLoading}) {
       onMouseLeave={handleMouseUp}
       className="BestManga-container"
     >
-      <BigCartManga data={data} isDragging={isDragging} />
+      <>
+        <BigCartManga data={data} isDragging={isDragging} />
+      </>
+
     </div>
   );
 }

@@ -53,7 +53,7 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/manga", (req, res) => {
-  MangaTable.findAll({ limit: 9, order: [["idManga", "desc"]] }).then(
+  MangaTable.findAll({ limit: 20, order: [["idManga", "desc"]] }).then(
     (data) => {
       res.json(data);
     },

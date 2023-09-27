@@ -4,15 +4,12 @@ import ImageManga from "../ImageManga.jsx";
 import "./BigCartManga-CSS.css";
 
 function BigCartManga({ data, isDragging }) {
-  const handleDragging = (event) => {
-    if (isDragging) event.preventDefault();
-  };
+
 
   return (
-    <div className="BigCartManga-container">
+    <>
       {data.map((item) => (
         <Link
-          onClick={handleDragging}
           to={`/manga/${item.idManga}`}
           key={item.idManga}
           className="Manga"
@@ -38,7 +35,7 @@ function BigCartManga({ data, isDragging }) {
           </div>
         </Link>
       ))}
-    </div>
+    </>
   );
 }
 

@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import ImageManga from "../ImageManga.jsx";
 import "./BigCartManga-CSS.css";
 
-function BigCartManga({ data, isDragging }) {
-
-
+function BigCartManga({ data }) {
   return (
     <>
       {data.map((item) => (

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useQueryGetActiveManga } from "../../hooks/useQueryGetActiveManga.js";
-import GetChapters from "../../Components/GetChapters/GetChapters.jsx";
 import { Link } from "react-router-dom";
-import { Route, Routes, useParams } from "react-router";
+import { useParams } from "react-router";
 import "./MangaPage.css";
-import MangaInfo from "../../Components/MangaInfo/MangaInfo.jsx";
 import MangaTabs from "../MangaTabs/MangaTabs.jsx";
 import { Icon36Favorite } from "@vkontakte/icons";
+import {useCookies} from "react-cookie";
 function MangaPage() {
   const [activeTab, setActiveTab] = useState(0);
   const { data, isLoading } = useQueryGetActiveManga();
+  const [cookies] = useCookies(["AuthDataCookie"]);
   const { id } = useParams();
 
   if (isLoading) {
@@ -29,7 +29,10 @@ function MangaPage() {
           src={`http://localhost:5001/image/${data.coverImageManga}`}
         />
         <button>Начать читать</button>
-        <button className="AddList-button">Добавить в список</button>
+        <button onClick={() => {
+          console.log(`id: ${id}`, `idUser: ${ cookies.AuthDataCookie.idUser}`)
+
+        }} className="AddList-button">Добавить в список</button>
         <div className="Info-card">
           <label>Статус тайтла</label>
           <p>Выходит</p>
@@ -49,7 +52,7 @@ function MangaPage() {
             {data.titleManga}
             <div className="Rate-info">
               <Icon36Favorite width={28} />
-              {data.rateManga}.52
+              {data.rateManga}.5
             </div>
           </h2>
           <p>Solo Leveling</p>

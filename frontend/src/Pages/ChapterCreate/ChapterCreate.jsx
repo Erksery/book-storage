@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useQueryCreateChapter} from "../../hooks/useQueryCreateChapter.js";
 import {useQueryCreateBook} from "../../hooks/useQueryCreateBook.js";
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
 
 function ChapterCreate() {
     const [array, setArray] = useState([])
@@ -11,6 +11,7 @@ function ChapterCreate() {
     const mutationAddImage = useQueryCreateBook()
     const fileInputRef = useRef(null);
     const {id} = useParams()
+    const navigate = useNavigate();
 
     const handleClear = (file) => {
         const filename = file.name;
@@ -30,6 +31,7 @@ function ChapterCreate() {
         const stringArray = JSON.stringify(array)
         const obj = {array: stringArray, numberChapter: field.number}
         mutate(obj)
+        navigate(`/manga/${id}`)
     };
 
 

@@ -73,4 +73,18 @@ const ChaptersTable = sequelizeMangaDatabase.define("chaptersDataTable", {
   },
 });
 
-module.exports = { UsersData, MangaTable, ChaptersTable };
+const BooksMarks = sequelizeMangaDatabase.define("bookMarks", {
+  idBookMarks: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    allowNull: false,
+  },
+  idMangaMarks: {
+    type: Sequelize.STRING(50),
+    unique: false,
+    allowNull: false,
+  },
+});
+
+module.exports = { UsersData, MangaTable, ChaptersTable, BooksMarks };

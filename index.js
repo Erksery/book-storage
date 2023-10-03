@@ -8,12 +8,12 @@ const {
   UsersData,
   MangaTable,
   ChaptersTable,
+  BooksMarks,
 } = require("./configDatabase/TableValidation");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const { Op } = require("sequelize");
-const nodemailer = require("nodemailer");
 const cors = require("cors");
 
 const urlencodedParser = express.urlencoded({ extended: false });
@@ -22,6 +22,7 @@ app.use(express.json());
 app.use(cors());
 
 MangaTable.hasMany(ChaptersTable);
+MangaTable.hasMany(BooksMarks)
 
 sequelizeMangaDatabase
   .sync()
@@ -33,6 +34,12 @@ sequelizeMangaDatabase
   .catch((err) => console.log("Error:", err));
 
 app.use(multer({ dest: "uploads" }).single("fileData"));
+
+app.get("/bookMarks" , (req, res) => {
+  BooksMarks.findAll().then((data) => {
+    res.json(data)
+  })
+})
 
 app.get("/image/:id", (req, res) => {
   const userId = req.params.id;

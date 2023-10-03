@@ -17,6 +17,6 @@ export const useQueryCreateBook = () => {
 
   return useMutation((newProduct) => createProduct(newProduct), {
     onSuccess: () => queryClient.invalidateQueries(["manga"]),
-    onError: () => alert("404"),
+    onError: () => console.log("404"),
   });
 };

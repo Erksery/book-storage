@@ -19,7 +19,6 @@ function GetChapters({ id }) {
       </>
     );
   }
-  console.log("Главы", data);
 
   return (
     <div>

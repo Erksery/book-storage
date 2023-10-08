@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import "./MangaPage.css";
 import MangaTabs from "../MangaTabs/MangaTabs.jsx";
 import { Icon36Favorite } from "@vkontakte/icons";
-import {useCookies} from "react-cookie";
+import { useCookies } from "react-cookie";
 function MangaPage() {
   const [activeTab, setActiveTab] = useState(0);
   const { data, isLoading } = useQueryGetActiveManga();
@@ -29,10 +29,17 @@ function MangaPage() {
           src={`http://localhost:5001/image/${data.coverImageManga}`}
         />
         <button>Начать читать</button>
-        <button onClick={() => {
-          console.log(`id: ${id}`, `idUser: ${ cookies.AuthDataCookie.idUser}`)
-
-        }} className="AddList-button">Добавить в список</button>
+        <button
+          onClick={() => {
+            console.log(
+              `id: ${id}`,
+              `idUser: ${cookies.AuthDataCookie.idUser}`
+            );
+          }}
+          className="AddList-button"
+        >
+          Добавить в список
+        </button>
         <div className="Info-card">
           <label>Статус тайтла</label>
           <p>Выходит</p>

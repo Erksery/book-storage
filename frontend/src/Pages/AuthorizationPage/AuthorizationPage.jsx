@@ -37,12 +37,7 @@ function AuthorizationPage() {
             required
           />
           <p>Password</p>
-          <input
-            name="password"
-            type="password"
-            placeholder="А пароль суда"
-            required
-          />
+          <input name="password" type="password" placeholder="Пароль суда" />
           <p>
             Впервые на сайте? <Link to={"/registration"}>Регистрация</Link>
           </p>

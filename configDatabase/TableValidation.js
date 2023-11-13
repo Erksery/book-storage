@@ -80,9 +80,18 @@ const BooksMarks = sequelizeMangaDatabase.define("bookMarks", {
     primaryKey: true,
     allowNull: false,
   },
-  idMangaMarks: {
-    type: Sequelize.STRING(50),
+  idUser: {
+    type: Sequelize.INTEGER,
     unique: false,
+    allowNull: false,
+  },
+  titleManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+  imageManga: {
+    type: Sequelize.STRING(100),
     allowNull: false,
   },
 });

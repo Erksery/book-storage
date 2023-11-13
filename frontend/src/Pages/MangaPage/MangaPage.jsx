@@ -6,6 +6,7 @@ import "./MangaPage.css";
 import MangaTabs from "../MangaTabs/MangaTabs.jsx";
 import { Icon36Favorite } from "@vkontakte/icons";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 function MangaPage() {
   const [activeTab, setActiveTab] = useState(0);
   const { data, isLoading } = useQueryGetActiveManga();
@@ -20,6 +21,19 @@ function MangaPage() {
     return <h2>Данные отсутствуют</h2>;
   }
 
+  function addBookMark() {
+    return axios.post("/api/addBookMarks", {
+      id: id,
+      title: data.titleManga,
+      image: data.coverImageManga,
+      idUser: cookies.AuthDataCookie.idUser,
+    });
+  }
+
+  const handleAddBookMark = () => {
+    addBookMark();
+  };
+
   return (
     <div className="MangaPage">
       <div className="Manga-sidebar">
@@ -27,17 +41,10 @@ function MangaPage() {
           width={70 * 4}
           height={100 * 4}
           src={`http://localhost:5001/image/${data.coverImageManga}`}
+          alt="..."
         />
         <button>Начать читать</button>
-        <button
-          onClick={() => {
-            console.log(
-              `id: ${id}`,
-              `idUser: ${cookies.AuthDataCookie.idUser}`
-            );
-          }}
-          className="AddList-button"
-        >
+        <button onClick={handleAddBookMark} className="AddList-button">
           Добавить в список
         </button>
         <div className="Info-card">

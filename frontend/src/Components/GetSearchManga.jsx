@@ -3,21 +3,18 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import ImageManga from "./ImageManga.jsx";
 
-// eslint-disable-next-line react/prop-types
 function GetSearchManga({ searchValue, setModalSearch }) {
   const [searchData, setSearchData] = useState([]);
 
   useEffect(() => {
-    if (searchValue != "") {
-      const fetchManga = async () => {
-        const resData = await axios.get("/api/searchManga", {
-          params: { value: searchValue },
-        });
+    const fetchManga = async () => {
+      const resData = await axios.get("/api/searchManga", {
+        params: { value: searchValue },
+      });
 
-        setSearchData(resData.data);
-      };
-      fetchManga().then();
-    }
+      setSearchData(resData.data);
+    };
+    fetchManga().then();
   }, [searchValue]);
 
   if (searchData.length === 0) {

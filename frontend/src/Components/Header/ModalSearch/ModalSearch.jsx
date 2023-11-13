@@ -6,8 +6,16 @@ import { Transition } from "react-transition-group";
 import GetSearchManga from "../../GetSearchManga.jsx";
 function ModalSearch({ modalSearch, setModalSearch }) {
   const [searchValue, setSearchValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   const searchInputRef = useRef();
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      setSearchValue(inputValue);
+    }, 300);
+    return () => clearTimeout(delayDebounce);
+  }, [inputValue]);
 
   return (
     <>
@@ -25,8 +33,8 @@ function ModalSearch({ modalSearch, setModalSearch }) {
               <div className="Input-wrap">
                 <input
                   ref={searchInputRef}
-                  value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
                   placeholder={`Опять работать?`}
                 />
                 {searchValue && (

@@ -1,23 +1,24 @@
-.BigCartManga-container{
-    display: flex;
-    flex-direction: row;
-}
-.Manga{
+.MangaCart-container{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     margin: 0 10px 10px 0;
 }
-.Manga img{
+.MangaCart-container img{
     border-radius: 7px;
 }
 
-.Manga div{
+.MangaCart-container div{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     margin: 5px 0 5px 0;
     font-size: 15px;
 
+}
+
+.MangaCart-container div span{
+    font-size: 14px;
+    color: gray;
 }

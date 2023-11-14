@@ -9,7 +9,7 @@ function MangaCart(props) {
         height={100 * 2.4}
         src={`http://localhost:5001/image/${props.imageManga}`}
       />
-      <div>{props.titleManga}</div>
+      <p>{props.titleManga}</p>
     </div>
   );
 }

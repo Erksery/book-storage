@@ -33,6 +33,13 @@ sequelizeMangaDatabase
   })
   .catch((err) => console.log("Error:", err));
 
+sequelizeUsersData
+  .sync()
+  .then(() => {
+    console.log("ALL COMPLETE: http://localhost:5001/users");
+  })
+  .catch((err) => console.log("Error:", err));
+
 app.use(multer({ dest: "uploads" }).single("fileData"));
 
 app.get("/image/:id", (req, res) => {
@@ -134,6 +141,7 @@ app.get("/searchManga", (req, res) => {
     where: {
       [Op.or]: [{ titleManga: { [Op.like]: `%${value}%` } }],
     },
+    limit: 15,
   }).then((data) => {
     res.json(data);
     console.log(data);
@@ -183,5 +191,13 @@ app.post("/addBookMarks", (req, res) => {
     titleManga: mangaData.title,
     imageManga: mangaData.image,
     idUser: userId,
-  }).then((r) => console.log(r));
+  })
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({ message: "Закладка успешно добавлена" });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: "Произошла ошибка при добавлении закладки" });
+    });
 });

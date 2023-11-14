@@ -3,7 +3,7 @@ function ImageManga({ width, height, src }) {
   return (
     <LazyLoad>
       <img
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", }}
         width={width}
         height={height}
         src={src}

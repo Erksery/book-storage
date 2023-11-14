@@ -4,6 +4,8 @@ import "./Transition-ModalSearch.css";
 import { Icon48CancelOutline } from "@vkontakte/icons";
 import { Transition } from "react-transition-group";
 import GetSearchManga from "../../GetSearchManga.jsx";
+
+// eslint-disable-next-line react/prop-types
 function ModalSearch({ modalSearch, setModalSearch }) {
   const [searchValue, setSearchValue] = useState("");
   const [inputValue, setInputValue] = useState("");
@@ -25,9 +27,11 @@ function ModalSearch({ modalSearch, setModalSearch }) {
             <div
               onClick={() => {
                 setModalSearch(false);
+                document.body.style.overflow = 'auto'
                 setSearchValue("");
               }}
               className={`BackgroundClose ${modalSearch}`}
+
             />
             <div className={`SearchModal ${modalSearch}`}>
               <div className="Input-wrap">
@@ -41,6 +45,7 @@ function ModalSearch({ modalSearch, setModalSearch }) {
                   <button
                     onClick={() => {
                       setSearchValue("");
+                      setInputValue("")
                       searchInputRef.current.focus();
                     }}
                   >

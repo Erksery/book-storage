@@ -27,7 +27,7 @@ function MangaPage() {
       title: data.titleManga,
       image: data.coverImageManga,
       idUser: cookies.AuthDataCookie.idUser,
-    });
+    }).catch((err) => console.log(err))
   }
 
   const handleAddBookMark = () => {

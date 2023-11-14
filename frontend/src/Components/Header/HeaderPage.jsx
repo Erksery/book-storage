@@ -31,7 +31,10 @@ function HeaderPage({ isVisible }) {
               setModalSearch={setModalSearch}
             />
             <div
-              onClick={() => setModalSearch((prev) => !prev)}
+              onClick={() => {
+                document.body.style.overflow = 'hidden'
+                setModalSearch((prev) => !prev)}
+              }
               className="Search-input"
             >
               <Icon56SearchOutline width={26} />

@@ -39,7 +39,7 @@ function MangaCatalog() {
             </Link>
           ))}
         </div>
-        <div className="filter"></div>
+        <div className="filter">sfsfsdfs</div>
       </div>
     </div>
   );

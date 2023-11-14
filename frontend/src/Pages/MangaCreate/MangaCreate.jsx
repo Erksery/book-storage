@@ -27,51 +27,100 @@ function MangaCreate() {
       <h2>Добавить новый тайтл</h2>
       <div className="CreateForm-container">
         <form action="/api/createManga" method="post">
-          <h3>Обложка</h3>
-          <div
-            className="File-container"
-            onClick={() => fileInputRef.current.click()}
-          >
-            {!avatarUrl ? (
-              <label>Нажмите, чтобы загрузить картинку</label>
-            ) : (
-              <img
-                width={70 * 2}
-                height={100 * 2}
-                src={`http://localhost:5001/image/${avatarUrl}`}
+          <div className="MainInfo-container">
+            <div>
+              <h3>Обложка</h3>
+              <div
+                className="File-container"
+                onClick={() => fileInputRef.current.click()}
+              >
+                {!avatarUrl ? (
+                  <label>Нажмите, чтобы загрузить картинку</label>
+                ) : (
+                  <img
+                    width={70 * 2}
+                    height={100 * 2}
+                    src={`http://localhost:5001/image/${avatarUrl}`}
+                  />
+                )}
+              </div>
+
+              <input
+                ref={fileInputRef}
+                type="file"
+                name="fileData"
+                onChange={handleFileChange}
               />
-            )}
+
+              <input type="hidden" name="avatarUrl" value={avatarUrl} />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 10,
+              }}
+            >
+              <h3>Название</h3>
+              <input type="text" name="title" placeholder="Название" />
+              <input
+                type="text"
+                name="titleEn"
+                placeholder="Английское название"
+              />
+              <div>
+                <h3>Формат</h3>
+                <div className="Info-container">
+                  <input name="type" placeholder="Тип" />
+                  <input name="format" placeholder="Формат выпуска" />
+                  <input name="status" placeholder="Статус тайтла" />
+                  <input name="translate" placeholder="Статус перевода" />
+                  <input name="year" placeholder="Год релиза" />
+                </div>
+              </div>
+            </div>
           </div>
-
-          <input
-            ref={fileInputRef}
-            type="file"
-            name="fileData"
-            onChange={handleFileChange}
-          />
-
-          <input type="hidden" name="avatarUrl" value={avatarUrl} />
-
-          <input type="text" name="title" placeholder="Название" />
-          <input type="text" name="titleEn" placeholder="Английское название" />
-          <textarea name="summary" placeholder="Описание" />
-          <input name="type" placeholder="Тип" />
-          <input name="year" placeholder="Год релиза" />
-          <input name="author" placeholder="Автор" />
-          <input name="painter" placeholder="Художник" />
-          <input name="tags" placeholder="Теги" />
-          <input name="genres" placeholder="Жанры" />
-          <input name="format" placeholder="Формат выпуска" />
-          <input name="status" placeholder="Статус тайтла" />
-          <input name="translate" placeholder="Статус перевода" />
-          <button
-            onClick={() => {
-              handleClear().then(() => navigate("/"));
-            }}
-            type="submit"
+          <div className="Additionally-info-container">
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <h3>Описание</h3>
+              <textarea name="summary" placeholder="Описание" />
+            </div>
+            <div className="Authors-info">
+              <h3>Авторы</h3>
+              <input name="author" placeholder="Автор" />
+              <input name="painter" placeholder="Художник" />
+            </div>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div style={{ flex: 1 }}>
+                <h3>Теги</h3>
+                <input
+                  style={{ width: "90%" }}
+                  name="tags"
+                  placeholder="Теги"
+                />
+              </div>
+              <div style={{ flex: 1 }}>
+                <h3>Жанры</h3>
+                <input name="genres" placeholder="Жанры" />
+              </div>
+            </div>
+          </div>
+          <div
+            style={{ display: "flex", justifyContent: "center", marginTop: 30 }}
           >
-            Загрузить
-          </button>
+            <button
+              style={{ padding: 20, width: "30%" }}
+              onClick={() => {
+                handleClear().then(() => navigate("/"));
+              }}
+              type="submit"
+            >
+              Загрузить
+            </button>
+          </div>
         </form>
       </div>
     </div>

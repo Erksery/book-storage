@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import "./MangaCreate-CSS.css";
 import { useQueryCreateBook } from "../../hooks/useQueryCreateBook.js";
@@ -109,10 +109,14 @@ function MangaCreate() {
             </div>
           </div>
           <div
-            style={{ display: "flex", justifyContent: "center", marginTop: 30 }}
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginTop: 30,
+            }}
           >
             <button
-              style={{ padding: 20, width: "30%" }}
+              className="SubmitButton"
               onClick={() => {
                 handleClear().then(() => navigate("/"));
               }}

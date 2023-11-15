@@ -81,3 +81,8 @@
     flex-direction: column;
     gap: 10px;
 }
+
+.SubmitButton{
+    width: 150px;
+    padding: 10px;
+}

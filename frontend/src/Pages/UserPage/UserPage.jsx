@@ -12,8 +12,9 @@ function UserPage() {
 
   return (
     <div className="UserPage-container">
-      {data.loginUser}
-      <div>
+      <h2>{data.loginUser}</h2>
+
+      <div className="BookMarks-container">
         {data.bookMarks.map((item) => (
           <MangaCart key={item.idBookMarks} {...item} />
         ))}

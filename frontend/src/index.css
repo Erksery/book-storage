@@ -67,12 +67,17 @@ button {
 }
 
 input{
+  padding-left: 10px;
   border-radius: 7px;
   border: solid 1px #3b3b3b;
   font-size: 15px;
   transition: 0.2s;
   color: rgb(128, 128, 128);
   background-color: var(--input-bg-color);
+}
+
+input:hover{
+  border: solid 1px #646cff;
 }
 
 input[type="file"]{

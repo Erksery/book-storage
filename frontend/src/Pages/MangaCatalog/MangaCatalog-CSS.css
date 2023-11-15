@@ -2,42 +2,18 @@
     display: flex;
     flex-direction: row;
 }
-
-.MangaCatalog-container .catalog{
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: auto;
-    justify-content: center;
-    width: 70%;
-    margin-right: 20px;
-    border-radius: 7px;
-}
-
-@media screen and (max-width: 1800px){
-    .MangaCatalog-container .catalog{
-        grid-template-columns: repeat(6, 1fr);
-    }
-}
-
-@media screen and (max-width: 1600px){
-    .MangaCatalog-container .catalog{
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-@media screen and (max-width: 1350px){
-    .MangaCatalog-container .catalog{
-        grid-template-columns: repeat(4, 1fr);
-    }
-    .MangaCatalog-container .catalog{
-        margin-right: 10px;
-    }
-}
-
-
-.MangaCatalog-container .filter{
+.MangaCatalog-container .ListManga-container{
     display: flex;
-    flex: auto;
-    padding: 30px;
-    border-radius: 7px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 3
+}
+.MangaCatalog-container .FilterManga-container{
+    flex: 1;
+}
+.MangaCatalog-container .FilterManga-container .FilterManga{
+    position: sticky;
+    top: 100px;
     background-color: #2f2f2f;
 }
+

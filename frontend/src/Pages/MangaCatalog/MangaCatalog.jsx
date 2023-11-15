@@ -3,6 +3,7 @@ import "./MangaCatalog-CSS.css";
 import { useQueryGetBooks } from "../../hooks/useQueryGetBooks.js";
 import { Link } from "react-router-dom";
 import ImageManga from "../../Components/ImageManga.jsx";
+import BigCartManga from "../../Components/BigCartManga/BigCartManga.jsx";
 
 function MangaCatalog() {
   const { data, isLoading } = useQueryGetBooks();
@@ -18,28 +19,14 @@ function MangaCatalog() {
     <div>
       <h2>Каталог</h2>
       <div className="MangaCatalog-container">
-        <div className="catalog">
-          {data.map((item) => (
-            <Link
-              to={`/manga/${item.idManga}`}
-              key={item.idManga}
-              className="Manga"
-            >
-              <ImageManga
-                width={70 * 2.4}
-                height={100 * 2.4}
-                src={`http://localhost:5001/image/${item.coverImageManga}`}
-              />
-
-              <div>
-                <span>Манхва | {item.rateManga}.6</span>
-
-                {item.titleManga}
-              </div>
-            </Link>
-          ))}
+        <div className="ListManga-container">
+          <BigCartManga data={data} />
+          <BigCartManga data={data} />
+          <BigCartManga data={data} />
         </div>
-        <div className="filter">sfsfsdfs</div>
+        <div className="FilterManga-container">
+          <div className="FilterManga">dasdas</div>
+        </div>
       </div>
     </div>
   );

@@ -7,8 +7,12 @@ import MangaTabs from "../MangaTabs/MangaTabs.jsx";
 import { Icon36Favorite } from "@vkontakte/icons";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { Transition } from "react-transition-group";
+import Modal from "../../Components/Modal/Modal.jsx";
 function MangaPage() {
   const [activeTab, setActiveTab] = useState(0);
+  const [openRateModal, setOpenRateModal] = useState(false);
+  const [userRate, setUserRate] = useState(0);
   const { data, isLoading } = useQueryGetActiveManga();
   const [cookies] = useCookies(["AuthDataCookie"]);
   const { id } = useParams();
@@ -22,12 +26,14 @@ function MangaPage() {
   }
 
   function addBookMark() {
-    return axios.post("/api/addBookMarks", {
-      id: id,
-      title: data.titleManga,
-      image: data.coverImageManga,
-      idUser: cookies.AuthDataCookie.idUser,
-    }).catch((err) => console.log(err))
+    return axios
+      .post("/api/addBookMarks", {
+        id: id,
+        title: data.titleManga,
+        image: data.coverImageManga,
+        idUser: cookies.AuthDataCookie.idUser,
+      })
+      .catch((err) => console.log(err));
   }
 
   const handleAddBookMark = () => {
@@ -64,7 +70,10 @@ function MangaPage() {
         <div className="Manga-caption">
           <h2>
             {data.titleManga}
-            <div className="Rate-info">
+            <div
+              className="Rate-info"
+              onClick={() => setOpenRateModal((prev) => !prev)}
+            >
               <Icon36Favorite width={28} />
               {data.rateManga}.5
             </div>
@@ -73,9 +82,9 @@ function MangaPage() {
         </div>
         <div className="Manga-info-container">
           <div className="Tabs-container">
-            <Link onClick={() => setActiveTab(0)}>Информация</Link>
-            <Link onClick={() => setActiveTab(1)}>Главы</Link>
-            <Link onClick={() => setActiveTab(2)}>Комментарии</Link>
+            <button onClick={() => setActiveTab(0)}>Информация</button>
+            <button onClick={() => setActiveTab(1)}>Главы</button>
+            <button onClick={() => setActiveTab(2)}>Комментарии</button>
           </div>
           <hr />
           <div className="Manga-info">
@@ -83,6 +92,33 @@ function MangaPage() {
           </div>
         </div>
       </div>
+      <Transition in={openRateModal} timeout={500}>
+        {(openRateModal) => (
+          <Modal
+            openRateModal={openRateModal}
+            setOpenRateModal={setOpenRateModal}
+          >
+            <div className="Rate-modal-container">
+              <h4>Оценка тайтла</h4>
+              <div className="Rate-star-container">
+                {new Array(10).fill(1).map((item, index) => (
+                  <div onClick={() => setUserRate(index + 1)}>
+                    <Icon36Favorite
+                      style={
+                        userRate <= index
+                          ? { color: "gray" }
+                          : { color: "#646cff" }
+                      }
+                      width={28}
+                    />
+                  </div>
+                ))}
+              </div>
+              <p>Вы поставили: {userRate}</p>
+            </div>
+          </Modal>
+        )}
+      </Transition>
     </div>
   );
 }

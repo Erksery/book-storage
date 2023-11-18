@@ -26,6 +26,7 @@
 .Chapters-container .Chapter-info{
     display: flex;
     align-items: center;
+    padding-right: 10px;
     font-size: 15px;
     color: #bebebe;
 }

@@ -14,7 +14,7 @@ img{
 }
 
 svg{
-  color: gray;
+  color: rgb(128, 128, 128);
   transition: 0.2s;
 }
 
@@ -51,6 +51,11 @@ h1 {
 h2{
   font-size: 28px;
   font-weight: 500;
+}
+
+h4{
+  margin: 0;
+  font-size: 19px;
 }
 
 button {
@@ -92,6 +97,7 @@ input[type="text"]{
 
 input:focus{
   color: rgba(255, 255, 255, 0.78);
+  border: solid 1px #646cff;
 }
 
 input:focus, input:focus-visible{

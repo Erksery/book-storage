@@ -21,8 +21,6 @@ function MangaCatalog() {
       <div className="MangaCatalog-container">
         <div className="ListManga-container">
           <BigCartManga data={data} />
-          <BigCartManga data={data} />
-          <BigCartManga data={data} />
         </div>
         <div className="FilterManga-container">
           <div className="FilterManga">dasdas</div>

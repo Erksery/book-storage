@@ -1,0 +1,34 @@
+.Modal-container.entering{
+    opacity: 1;
+}
+
+.Modal-container.entered{
+    opacity: 1;
+}
+
+.Modal-container.exiting{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.Modal-container.exited{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.Modal-container .Modal.entering{
+    transform: translate(0%, -50%);
+}
+
+.Modal-container .Modal.entered{
+    transform: translate(0%, -50%);
+}
+
+.Modal-container .Modal.exiting{
+    transform: translate(0%, -20%);
+}
+
+.Modal-container .Modal.exited{
+    transform: translate(0%, -20%);
+}
+

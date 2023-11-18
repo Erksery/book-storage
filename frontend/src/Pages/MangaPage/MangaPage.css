@@ -76,6 +76,7 @@
     align-items: center;
     color: #bebebe;
     font-size: 25px;
+    cursor: pointer;
 }
 
 .Manga-info-container{
@@ -92,9 +93,53 @@
     border: solid 1px rgba(128, 128, 128, 0.47);
 }
 
-.Tabs-container a{
-    margin-right: 15px;
+.Tabs-container{
+    display: flex;
+    flex-direction: row;
+    gap: 15px
+}
+.Tabs-container button{
     font-size: 17px;
     font-weight: 500;
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
 }
 
+.Tabs-container button:hover{
+    color: #646cff;
+}
+
+.Rate-modal-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.Rate-modal-container p{
+    text-align: center;
+}
+
+.Rate-modal-container h4 {
+    color: rgba(211, 211, 211, 0.66);
+}
+
+.Rate-modal-container .Rate-success-button{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Rate-modal-container .Rate-success-button button{
+    padding: 10px;
+}
+
+.Rate-modal-container .Rate-star-container{
+    display: flex;
+    width: 450px;
+}
+
+.Rate-modal-container .Rate-star-container div{
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    cursor: pointer;
+}

@@ -120,16 +120,20 @@
 }
 
 .Rate-modal-container h4 {
+    font-weight: 600;
     color: rgba(211, 211, 211, 0.66);
 }
 
 .Rate-modal-container .Rate-success-button{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .Rate-modal-container .Rate-success-button button{
-    padding: 10px;
+    padding: 8px 15px ;
+
+    font-size: 15px;
 }
 
 .Rate-modal-container .Rate-star-container{

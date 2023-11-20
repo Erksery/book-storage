@@ -15,13 +15,14 @@ function GetChapters({ id }) {
     return (
       <>
         <Link to={`/manga/${id}/createChapters`}>Добавить главу</Link>
-        <h2>Главы пока не завезли(</h2>
+        <h2>Главы пока не завезли :(</h2>
       </>
     );
   }
 
   return (
     <div>
+      <Link to={`/manga/${id}/createChapters`}>Добавить главу</Link>
       {data.map((item) => (
         <div className="Chapters-container" key={item.idChapter}>
           <div className="Chapter-item">

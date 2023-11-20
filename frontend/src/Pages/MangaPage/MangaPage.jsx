@@ -102,7 +102,7 @@ function MangaPage() {
               <h4>Оценка тайтла</h4>
               <div className="Rate-star-container">
                 {new Array(10).fill(1).map((item, index) => (
-                  <div onClick={() => setUserRate(index + 1)}>
+                  <div key={index} onClick={() => setUserRate(index + 1)}>
                     <Icon36Favorite
                       style={
                         userRate <= index
@@ -114,7 +114,15 @@ function MangaPage() {
                   </div>
                 ))}
               </div>
-              <p>Вы поставили: {userRate}</p>
+              <div className="Rate-success-button">
+                <p>Вы поставили: {userRate}</p>
+                <button
+                  onClick={() => setOpenRateModal((prevState) => !prevState)}
+                  disabled={userRate <= 0}
+                >
+                  Подтвердить
+                </button>
+              </div>
             </div>
           </Modal>
         )}

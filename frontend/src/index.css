@@ -71,6 +71,10 @@ button {
   transition: 0.2s;
 }
 
+button:disabled{
+  color: rgb(128, 128, 128);
+}
+
 input{
   padding-left: 10px;
   border-radius: 7px;

@@ -117,19 +117,19 @@ app.post("/manga/:id/createChapters", urlencodedParser, (req, res) => {
   }).then((data) => res.send(data));
 });
 
-app.get("/manga/:id", (req, res) => {
-  const id = req.params.id;
-  MangaTable.findOne({ where: { idManga: id } }).then((data) => {
-    res.json(data);
-  });
-});
-
 app.get("/manga/:id/chapters/:idChapter", urlencodedParser, (req, res) => {
   const id = req.params.id;
   const idChapter = req.params.idChapter;
   ChaptersTable.findOne({
     where: { idChapter: idChapter, mangaTableIdManga: id },
   }).then((data) => {
+    res.json(data);
+  });
+});
+
+app.get("/manga/:id", (req, res) => {
+  const id = req.params.id;
+  MangaTable.findOne({ where: { idManga: id } }).then((data) => {
     res.json(data);
   });
 });
@@ -198,6 +198,8 @@ app.post("/addBookMarks", (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ error: "Произошла ошибка при добавлении закладки" });
+      res
+        .status(500)
+        .json({ error: "Произошла ошибка при добавлении закладки" });
     });
 });

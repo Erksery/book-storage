@@ -5,7 +5,7 @@
 .Menu{
     position: absolute;
     right: 0%;
-    top: 100%;
+    top: 120%;
     padding: 8px;
     margin-right: 3px;
     border-radius: 7px;
@@ -32,24 +32,24 @@
 }
 
 .Menu.entering{
-    transform: scale(100%);
+    /*transform: scale(100%);*/
     opacity: 1;
 }
 
 .Menu.entered{
-    transform: scale(100%);
+    /*transform: scale(100%);*/
     opacity: 1;
 }
 
 .Menu.exiting{
-    top: 130%;
+    top: 150%;
     /*transform: scale(90%);*/
     visibility: hidden;
     opacity: 0;
 }
 
 .Menu.exited{
-    top: 130%;
+    top: 150%;
     /*transform: scale(90%);*/
     visibility: hidden;
     opacity: 0;

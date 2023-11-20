@@ -6,6 +6,7 @@ import {
   Icon96NotePenOutline,
   Icon56ServicesOutline,
   Icon56SearchOutline,
+  Icon28MenuOutline,
 } from "@vkontakte/icons";
 import { useState } from "react";
 import ModalSearch from "./ModalSearch/ModalSearch.jsx";
@@ -32,9 +33,8 @@ function HeaderPage({ isVisible }) {
             />
             <div
               onClick={() => {
-                document.body.style.overflow = 'hidden'
-                setModalSearch((prev) => !prev)}
-              }
+                setModalSearch((prev) => !prev);
+              }}
               className="Search-input"
             >
               <Icon56SearchOutline width={26} />
@@ -46,25 +46,30 @@ function HeaderPage({ isVisible }) {
             {/*  <Icon56SearchOutline width={26} />*/}
             {/*  Поиск*/}
             {/*</button>*/}
-            <Link className="link" to={"/catalog"}>
-              <button>
-                <Icon56ServicesOutline width={26} height={26} />
-                Каталог
-              </button>
-            </Link>
-            <Link className="link" to={"/create"}>
-              <button>
-                <Icon96NotePenOutline width={26} height={26} />
-                Добавить
-              </button>
-            </Link>
-            {cookies.AuthDataCookie ? (
-              <UserButton />
-            ) : (
-              <Link to={"/sing-in"}>
-                <button className="Auth-button">Войти</button>
+            <button className="MenuButton-button">
+              <Icon28MenuOutline width={33} height={33} />
+            </button>
+            <div style={{ display: "flex" }}>
+              <Link className="link" to={"/catalog"}>
+                <button>
+                  <Icon56ServicesOutline width={26} height={26} />
+                  Каталог
+                </button>
               </Link>
-            )}
+              <Link className="link" to={"/create"}>
+                <button>
+                  <Icon96NotePenOutline width={26} height={26} />
+                  Добавить
+                </button>
+              </Link>
+              {cookies.AuthDataCookie ? (
+                <UserButton />
+              ) : (
+                <Link to={"/sing-in"}>
+                  <button className="Auth-button">Войти</button>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       )}

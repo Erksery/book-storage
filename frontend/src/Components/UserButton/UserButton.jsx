@@ -9,11 +9,15 @@ import {
   Icon56SettingsOutline,
 } from "@vkontakte/icons";
 import { Transition } from "react-transition-group";
+import { useAuth } from "../../hooks/useAuth.js";
 
 function UserButton() {
   const [cookies] = useCookies(["AuthDataCookie"]);
   const [menuModal, setMenuModal] = useState(false);
   const modalRef = useRef(null);
+  const isAuth = useAuth();
+
+  console.log(isAuth);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

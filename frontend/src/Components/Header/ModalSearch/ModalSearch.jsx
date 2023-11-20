@@ -27,11 +27,9 @@ function ModalSearch({ modalSearch, setModalSearch }) {
             <div
               onClick={() => {
                 setModalSearch(false);
-                document.body.style.overflow = 'auto'
                 setSearchValue("");
               }}
               className={`BackgroundClose ${modalSearch}`}
-
             />
             <div className={`SearchModal ${modalSearch}`}>
               <div className="Input-wrap">
@@ -45,7 +43,7 @@ function ModalSearch({ modalSearch, setModalSearch }) {
                   <button
                     onClick={() => {
                       setSearchValue("");
-                      setInputValue("")
+                      setInputValue("");
                       searchInputRef.current.focus();
                     }}
                   >

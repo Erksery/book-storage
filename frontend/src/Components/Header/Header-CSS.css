@@ -4,11 +4,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 60px;
-
     width: 100%;
     background-color: #2f2f2f;
     transition: 0.3s;
-    z-index: 9999;
+    z-index: 9000;
 }
 
 .Header .Logo-container{
@@ -76,6 +75,9 @@
 .Header .Option-container button svg{
     margin-right: 3px;
 }
+.MenuButton-button{
+    display: none !important;
+}
 
 
 .Header.entering{
@@ -94,4 +96,29 @@
 .Header.exited{
     visibility: hidden;
     opacity: 0;
+}
+
+@media screen and (max-width: 1300px){
+
+    .Header .Search-container .Search-input{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 850px){
+    .Header {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .Header .Logo-container{
+        display: none;
+    }
+    .Header .Search-container {
+        display: none;
+    }
+    .Header .Option-container{
+        justify-content: space-between;
+    }
+    .MenuButton-button{
+        display: flex !important;
+    }
 }

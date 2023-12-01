@@ -1,19 +1,19 @@
-.MangaCatalog-container{
-    display: flex;
-    flex-direction: row;
+.MangaCatalog-container {
+  display: flex;
+  flex-direction: row;
 }
-.MangaCatalog-container .ListManga-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex: 3
+.MangaCatalog-container .ListManga-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 3;
+  gap: 20px;
 }
-.MangaCatalog-container .FilterManga-container{
-    flex: 1;
+.MangaCatalog-container .FilterManga-container {
+  flex: 1;
 }
-.MangaCatalog-container .FilterManga-container .FilterManga{
-    position: sticky;
-    top: 100px;
-    background-color: #2f2f2f;
+.MangaCatalog-container .FilterManga-container .FilterManga {
+  position: sticky;
+  top: 100px;
+  background-color: #2f2f2f;
 }
-

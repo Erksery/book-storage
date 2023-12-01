@@ -1,14 +1,13 @@
-import LazyLoad from "react-lazyload";
+import { motion } from "framer-motion";
+
 function ImageManga({ width, height, src }) {
   return (
-    <LazyLoad>
-      <img
-        style={{ objectFit: "cover", }}
-        width={width}
-        height={height}
-        src={src}
-      />
-    </LazyLoad>
+    <img
+      style={{ objectFit: "cover", borderRadius: 15 }}
+      width={width}
+      height={height}
+      src={src}
+    />
   );
 }
 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router";
+
 function AuthorizationPage() {
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies(["AuthDataCookie"]);

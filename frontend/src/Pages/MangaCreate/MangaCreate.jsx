@@ -12,7 +12,10 @@ function MangaCreate() {
   const handleClear = (file) => {
     const filename = file.name;
     const newFilename = filename.replace(/\.(jpg|png|jpeg)$/i, "");
-    setAvatarUrl(newFilename);
+    setTimeout(() => {
+      setAvatarUrl(newFilename);
+    }, 1000);
+
     console.log(avatarUrl);
   };
 
@@ -38,6 +41,7 @@ function MangaCreate() {
                   <label>Нажмите, чтобы загрузить картинку</label>
                 ) : (
                   <img
+                    style={{ objectFit: "cover" }}
                     width={70 * 2}
                     height={100 * 2}
                     src={`http://localhost:5001/image/${avatarUrl}`}

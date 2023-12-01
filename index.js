@@ -64,7 +64,7 @@ app.get("/manga", (req, res) => {
   MangaTable.findAll({ limit: 20, order: [["idManga", "desc"]] }).then(
     (data) => {
       res.json(data);
-    },
+    }
   );
 });
 
@@ -80,7 +80,6 @@ app.get("/manga/:id/chapters", urlencodedParser, (req, res) => {
 
 app.post("/uploadImage", (req, res) => {
   let fileData = req.file;
-  console.log(fileData);
   const fileExt = path.extname(fileData.originalname);
   const fileName = path.basename(fileData.originalname, fileExt);
   const newFileName = fileName + ".jpg";
@@ -107,7 +106,6 @@ app.post("/manga/:id/createChapters", urlencodedParser, (req, res) => {
   const id = req.params.id;
   const dataArray = req.body.array;
   const numberChapter = req.body.numberChapter;
-  console.log(numberChapter);
   const arrayImageChapter = JSON.parse(dataArray);
   const imagesData = JSON.stringify(arrayImageChapter);
   ChaptersTable.create({
@@ -144,13 +142,11 @@ app.get("/searchManga", (req, res) => {
     limit: 15,
   }).then((data) => {
     res.json(data);
-    console.log(data);
   });
 });
 
 app.post("/registration", (req, res) => {
   const inputData = req.body;
-  console.log(inputData);
   UsersData.create({
     loginUser: inputData.name,
     passwordUser: inputData.password,

@@ -9,6 +9,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { Transition } from "react-transition-group";
 import Modal from "../../Components/Modal/Modal.jsx";
+
 function MangaPage() {
   const [activeTab, setActiveTab] = useState(0);
   const [openRateModal, setOpenRateModal] = useState(false);

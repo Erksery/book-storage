@@ -22,10 +22,13 @@ function HeaderPage({ isVisible }) {
     <Transition in={isVisible} timeout={500}>
       {(isVisible) => (
         <div className={`Header ${isVisible}`}>
-          <Link to={"/"} className="Logo-container">
-            <img style={{ width: 40 }} src={logo} />
-            <h2>React Manga</h2>
-          </Link>
+          <div className="Logo-container">
+            <Link to={"/"}>
+              <img style={{ width: 40 }} src={logo} />
+              <h2>React Manga</h2>
+            </Link>
+          </div>
+
           <div className="Search-container">
             <ModalSearch
               modalSearch={modalSearch}

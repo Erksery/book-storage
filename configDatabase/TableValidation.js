@@ -44,6 +44,62 @@ const MangaTable = sequelizeMangaDatabase.define("mangaTable", {
     unique: true,
     allowNull: false,
   },
+  titleEnglish: {
+    type: Sequelize.STRING(50),
+    unique: false,
+    allowNull: false,
+  },
+  typeManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+  formatManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+  statusManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+  translateStatusManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+  yearManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+  summaryManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+  authorManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+  painterManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+  tagsManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+  genresManga: {
+    type: Sequelize.STRING(50),
+    unique: true,
+    allowNull: false,
+  },
+
   rateManga: {
     type: Sequelize.STRING(20),
     allowNull: false,

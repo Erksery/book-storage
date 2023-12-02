@@ -2,17 +2,10 @@ import React from "react";
 import "./MangaInfo-CSS.css";
 import { Link } from "react-router-dom";
 
-function MangaInfo() {
+function MangaInfo({ description }) {
   return (
     <>
-      <span>
-        10 лет назад раскрылись врата в другой мир, где людям дозволено убивать
-        монстров. Так появились охотники, преследующие и уничтожающие тварей. Но
-        не каждому из них суждено повысить свой уровень и стать сильнее. Сон
-        Джин Ву был охотником низшего E-ранга, у которого не было ни единого
-        шанса продвинуться по ранговой лестнице, пока однажды он случайно не
-        очутился в подземелье D-ранга.
-      </span>
+      <span>{description}</span>
       <div className="Tags-container">
         <div className="Tag">Фэнтези</div>
         <div className="Tag">Комедия</div>

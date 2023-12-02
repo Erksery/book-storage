@@ -34,7 +34,7 @@ function MangaPage() {
         image: data.coverImageManga,
         idUser: cookies.AuthDataCookie.idUser,
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.response.data.error));
   }
 
   const handleAddBookMark = () => {
@@ -56,15 +56,15 @@ function MangaPage() {
         </button>
         <div className="Info-card">
           <label>Статус тайтла</label>
-          <p>Выходит</p>
+          <p>{data.statusManga}</p>
           <label>Год релиза</label>
-          <p>2020</p>
+          <p>{data.yearManga}</p>
           <label>Автор</label>
-          <p>GEE So-Lyung</p>
+          <p>{data.authorManga}</p>
           <label>Художник</label>
-          <p>Jang Sung-lak</p>
+          <p>{data.painterManga}</p>
           <label>Формат выпуска</label>
-          <p>Веб</p>
+          <p>{data.formatManga}</p>
         </div>
       </div>
       <div className="Manga-content">
@@ -89,7 +89,7 @@ function MangaPage() {
           </div>
           <hr />
           <div className="Manga-info">
-            <MangaTabs activeTab={activeTab} />
+            <MangaTabs activeTab={activeTab} description={data.summaryManga} />
           </div>
         </div>
       </div>

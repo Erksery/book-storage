@@ -93,6 +93,17 @@ app.post("/createManga", urlencodedParser, (req, res) => {
 
   MangaTable.create({
     titleManga: addNewManga.title,
+    titleEnglish: addNewManga.titleEn,
+    typeManga: addNewManga.type,
+    formatManga: addNewManga.format,
+    statusManga: addNewManga.status,
+    translateStatusManga: addNewManga.translate,
+    yearManga: addNewManga.year,
+    summaryManga: addNewManga.summary,
+    authorManga: addNewManga.author,
+    painterManga: addNewManga.painter,
+    tagsManga: addNewManga.tags,
+    genresManga: addNewManga.genres,
     coverImageManga: addNewManga.avatarUrl,
     rateManga: "8",
   })

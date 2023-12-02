@@ -6,7 +6,6 @@ import HeaderPage from "./Components/Header/HeaderPage.jsx";
 import MangaPage from "./Pages/MangaPage/MangaPage.jsx";
 import ChapterPage from "./Pages/ChapterPage/ChapterPage.jsx";
 import ChapterCreate from "./Pages/ChapterCreate/ChapterCreate.jsx";
-import MangaTabs from "./Pages/MangaTabs/MangaTabs.jsx";
 import { useEffect, useState } from "react";
 import MangaCatalog from "./Pages/MangaCatalog/MangaCatalog.jsx";
 import RegistrationPage from "./Pages/RegistrationPage/RegistrationPage.jsx";

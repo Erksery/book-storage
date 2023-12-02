@@ -4,10 +4,10 @@ import { useParams } from "react-router";
 import GetChapters from "../../Components/GetChapters/GetChapters.jsx";
 import MangaInfo from "../../Components/MangaInfo/MangaInfo.jsx";
 
-function MangaTabs({ activeTab }) {
+function MangaTabs({ activeTab, description }) {
   const { id } = useParams();
 
-  if (activeTab === 0) return <MangaInfo />;
+  if (activeTab === 0) return <MangaInfo description={description} />;
   if (activeTab === 1) return <GetChapters id={id} />;
 }
 

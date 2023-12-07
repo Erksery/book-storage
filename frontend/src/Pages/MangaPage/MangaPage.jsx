@@ -30,6 +30,7 @@ function MangaPage() {
     return axios
       .post("/api/addBookMarks", {
         id: id,
+
         title: data.titleManga,
         image: data.coverImageManga,
         idUser: cookies.AuthDataCookie.idUser,

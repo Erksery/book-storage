@@ -136,6 +136,13 @@ const BooksMarks = sequelizeMangaDatabase.define("bookMarks", {
     primaryKey: true,
     allowNull: false,
   },
+
+  idManga: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    allowNull: false,
+  },
+
   idUser: {
     type: Sequelize.INTEGER,
     unique: false,
@@ -146,7 +153,7 @@ const BooksMarks = sequelizeMangaDatabase.define("bookMarks", {
     unique: true,
     allowNull: false,
   },
-  imageManga: {
+  coverImageManga: {
     type: Sequelize.STRING(100),
     allowNull: false,
   },

@@ -107,10 +107,12 @@ app.post("/createManga", urlencodedParser, (req, res) => {
     coverImageManga: addNewManga.avatarUrl,
     rateManga: "8",
   })
-    .then((data) => {
-      res.redirect("/");
+    .then((r) => {
+      res.status(200).json({ message: "Тайтл добавлен" });
     })
-    .catch((err) => console.log(err));
+    .catch((err) =>
+      res.status(400).json({ error: "Ошибка при добавлении тайтла" })
+    );
 });
 
 app.post("/manga/:id/createChapters", urlencodedParser, (req, res) => {
@@ -190,14 +192,14 @@ app.get("/bookMarks", (req, res) => {
 });
 
 app.post("/addBookMarks", (req, res) => {
-  const userId = req.body.idUser;
   const mangaData = req.body;
 
   BooksMarks.create({
     mangaTableIdManga: mangaData.id,
     titleManga: mangaData.title,
-    imageManga: mangaData.image,
-    idUser: userId,
+    coverImageManga: mangaData.image,
+    idUser: mangaData.idUser,
+    idManga: mangaData.id,
   })
     .then((result) => {
       console.log(result);
@@ -206,7 +208,21 @@ app.post("/addBookMarks", (req, res) => {
     .catch((error) => {
       console.error(error);
       res
-        .status(500)
+        .status(400)
         .json({ error: "Произошла ошибка при добавлении закладки" });
+    });
+});
+
+app.post("/removeBookMark", (req, res) => {
+  const id = req.body;
+  BooksMarks.destroy({
+    where: { idManga: id.idManga, idUser: id.idUser },
+  })
+    .then((r) => {
+      res.status(200).json({ message: "Закладка успешно удалена" });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(400).json({ error: "Произошла ошибка при Удалении закладки" });
     });
 });

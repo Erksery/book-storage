@@ -226,3 +226,21 @@ app.post("/removeBookMark", (req, res) => {
       res.status(400).json({ error: "Произошла ошибка при Удалении закладки" });
     });
 });
+
+app.get("/mangaChapterAdded", (req, res) => {
+  ChaptersTable.findAll().then(async (chapterData) => {
+    const array = chapterData.map((chapter) => chapter.get());
+
+    const mangaDataArray = [];
+
+    for (let i = 0; i < array.length; i++) {
+      await MangaTable.findOne({ where: array[i].mangaTableIdManga }).then(
+        (mangaData) => {
+          mangaDataArray.push(mangaData);
+        }
+      );
+    }
+
+    res.json(mangaDataArray);
+  });
+});

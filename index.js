@@ -228,19 +228,24 @@ app.post("/removeBookMark", (req, res) => {
 });
 
 app.get("/mangaChapterAdded", (req, res) => {
-  ChaptersTable.findAll().then(async (chapterData) => {
-    const array = chapterData.map((chapter) => chapter.get());
+  ChaptersTable.findAll({ order: [["idChapter", "desc"]] }).then(
+    async (chapterData) => {
+      const array = chapterData.map((chapter) => chapter.get());
 
-    const mangaDataArray = [];
+      const mangaDataArray = [];
 
-    for (let i = 0; i < array.length; i++) {
-      await MangaTable.findOne({ where: array[i].mangaTableIdManga }).then(
-        (mangaData) => {
-          mangaDataArray.push(mangaData);
-        }
-      );
+      for (let i = 0; i < array.length; i++) {
+        await MangaTable.findOne({
+          where: array[i].mangaTableIdManga,
+        }).then((mangaData) => {
+          mangaDataArray.push({
+            ...mangaData.dataValues,
+            numberChapter: array[i].numberChapter,
+          });
+        });
+      }
+
+      res.json(mangaDataArray);
     }
-
-    res.json(mangaDataArray);
-  });
+  );
 });

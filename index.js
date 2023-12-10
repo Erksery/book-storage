@@ -68,6 +68,36 @@ app.get("/manga", (req, res) => {
   );
 });
 
+app.get("/catalog", (req, res) => {
+  MangaTable.findAll().then((data) => {
+    res.json(data);
+  });
+});
+
+app.get("/catalog/:tag", (req, res) => {
+  try {
+    const tag = req.params.tag;
+    console.log(tag);
+
+    if (tag !== "undefined") {
+      MangaTable.findAll({
+        where: {
+          [Op.or]: [{ tagsManga: { [Op.like]: `%${tag}%` } }],
+        },
+      }).then((data) => {
+        res.json(data);
+      });
+    } else {
+      MangaTable.findAll().then((data) => {
+        res.json(data);
+      });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.get("/manga/:id/chapters", urlencodedParser, (req, res) => {
   const id = req.params.id;
   ChaptersTable.findAll({
@@ -105,6 +135,7 @@ app.post("/createManga", urlencodedParser, (req, res) => {
     tagsManga: addNewManga.tags,
     genresManga: addNewManga.genres,
     coverImageManga: addNewManga.avatarUrl,
+    bannerImageManga: addNewManga.bannerUrl,
     rateManga: "8",
   })
     .then((r) => {
@@ -121,6 +152,8 @@ app.post("/manga/:id/createChapters", urlencodedParser, (req, res) => {
   const numberChapter = req.body.numberChapter;
   const arrayImageChapter = JSON.parse(dataArray);
   const imagesData = JSON.stringify(arrayImageChapter);
+  const dateCreateChapter = new Date();
+
   ChaptersTable.create({
     numberChapter: numberChapter,
     imagesChapter: imagesData,
@@ -234,13 +267,19 @@ app.get("/mangaChapterAdded", (req, res) => {
 
       const mangaDataArray = [];
 
+      const dateAdded = new Date();
+
       for (let i = 0; i < array.length; i++) {
         await MangaTable.findOne({
           where: array[i].mangaTableIdManga,
         }).then((mangaData) => {
+          const difference = Math.floor(
+            (dateAdded - array[i].dateCreateChapter) / 1000 / 60
+          );
           mangaDataArray.push({
             ...mangaData.dataValues,
             numberChapter: array[i].numberChapter,
+            difference,
           });
         });
       }

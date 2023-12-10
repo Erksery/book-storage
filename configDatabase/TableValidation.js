@@ -75,8 +75,8 @@ const MangaTable = sequelizeMangaDatabase.define("mangaTable", {
     allowNull: false,
   },
   summaryManga: {
-    type: Sequelize.STRING(50),
-    unique: true,
+    type: Sequelize.TEXT,
+    unique: false,
     allowNull: false,
   },
   authorManga: {
@@ -90,12 +90,12 @@ const MangaTable = sequelizeMangaDatabase.define("mangaTable", {
     allowNull: false,
   },
   tagsManga: {
-    type: Sequelize.STRING(50),
+    type: Sequelize.STRING(500),
     unique: true,
     allowNull: false,
   },
   genresManga: {
-    type: Sequelize.STRING(50),
+    type: Sequelize.STRING(500),
     unique: true,
     allowNull: false,
   },
@@ -105,6 +105,10 @@ const MangaTable = sequelizeMangaDatabase.define("mangaTable", {
     allowNull: false,
   },
   coverImageManga: {
+    type: Sequelize.STRING(100),
+    allowNull: false,
+  },
+  bannerImageManga: {
     type: Sequelize.STRING(100),
     allowNull: false,
   },
@@ -125,6 +129,11 @@ const ChaptersTable = sequelizeMangaDatabase.define("chaptersDataTable", {
   imagesChapter: {
     type: Sequelize.STRING(1000),
     unique: false,
+    allowNull: false,
+  },
+  dateCreateChapter: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     allowNull: false,
   },
 });

@@ -83,8 +83,9 @@ app.get("/catalog/:tag", (req, res) => {
 
     if (tag !== "undefined") {
       MangaTable.findAll({
+
         where: {
-          [Op.or]: [{ tagsManga: { [Op.like]: `%${tag}%` } }],
+          [Op.or]: [{ genresManga: { [Op.like]: `%${tag}%`}}],
         },
       }).then((data) => {
         res.json(data);

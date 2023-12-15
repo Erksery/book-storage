@@ -201,7 +201,8 @@ app.post("/registration", (req, res) => {
     passwordUser: inputData.password,
     emailUser: inputData.email,
     avatarUrl: "uploads/userLogo",
-  }).then((data) => console.log(data));
+  }).then((data) => res.status(200).json({error: "Пользователь успешно создан"}))
+  .catch((err) => res.status(400).json({error: "Пользователь уже существует"}))
 });
 
 app.get("/authorization", (req, res) => {

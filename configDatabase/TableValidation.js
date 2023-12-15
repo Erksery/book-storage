@@ -105,11 +105,11 @@ const MangaTable = sequelizeMangaDatabase.define("mangaTable", {
     allowNull: false,
   },
   coverImageManga: {
-    type: Sequelize.STRING(100),
+    type: Sequelize.TEXT,
     allowNull: false,
   },
   bannerImageManga: {
-    type: Sequelize.STRING(100),
+    type: Sequelize.TEXT,
     allowNull: false,
   },
 });

@@ -9,6 +9,7 @@ const {
   MangaTable,
   ChaptersTable,
   BooksMarks,
+  RatingsTable,
 } = require("./configDatabase/TableValidation");
 const multer = require("multer");
 const path = require("path");
@@ -23,6 +24,7 @@ app.use(cors());
 
 MangaTable.hasMany(ChaptersTable);
 MangaTable.hasMany(BooksMarks);
+MangaTable.hasMany(RatingsTable);
 
 sequelizeMangaDatabase
   .sync()
@@ -287,4 +289,30 @@ app.get("/mangaChapterAdded", (req, res) => {
       res.json(mangaDataArray);
     }
   );
+});
+
+app.post("/addUserMangaRate", (req, res) => {
+  const data = req.body;
+  console.log(data);
+  RatingsTable.create({
+    idUser: data.idUser,
+    ratingCount: data.ratingCount,
+    mangaTableIdManga: data.idManga,
+  })
+    .then((r) => {
+      res.status(200).json({ message: "Оценка успешно поставленна" });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(400).json({ error: "Произошла ошибка при записи оценки" });
+    });
+});
+
+app.get("/mangaRating", (req, res) => {
+  const id = req.query.idManga;
+  RatingsTable.findAll({ where: { mangaTableIdManga: id } })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => console.log(err));
 });

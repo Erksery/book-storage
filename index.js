@@ -46,14 +46,16 @@ app.use(multer({ dest: "uploads" }).single("fileData"));
 
 app.get("/image/:id", (req, res) => {
   const userId = req.params.id;
-  fs.readFile(`uploads/${userId}.jpg`, (err, data) => {
-    if (err) {
-      res.status(500).send("Error reading the image file");
-    } else {
-      res.setHeader("Content-Type", "image/jpg");
-      res.send(data);
-    }
-  });
+  setTimeout(() => {
+    fs.readFile(`uploads/${userId}.jpg`, (err, data) => {
+      if (err) {
+        res.status(500).send("Error reading the image file");
+      } else {
+        res.setHeader("Content-Type", "image/jpg");
+        res.send(data);
+      }
+    });
+  }, 1000);
 });
 
 app.get("/users", (req, res) => {
@@ -83,9 +85,8 @@ app.get("/catalog/:tag", (req, res) => {
 
     if (tag !== "undefined") {
       MangaTable.findAll({
-
         where: {
-          [Op.or]: [{ genresManga: { [Op.like]: `%${tag}%`}}],
+          [Op.or]: [{ genresManga: { [Op.like]: `%${tag}%` } }],
         },
       }).then((data) => {
         res.json(data);
@@ -113,11 +114,17 @@ app.get("/manga/:id/chapters", urlencodedParser, (req, res) => {
 
 app.post("/uploadImage", (req, res) => {
   let fileData = req.file;
-  const fileExt = path.extname(fileData.originalname);
-  const fileName = path.basename(fileData.originalname, fileExt);
-  const newFileName = fileName + ".jpg";
-  const newPath = path.join(fileData.destination, newFileName);
-  fs.renameSync(fileData.path, newPath);
+
+  try {
+    const fileExt = path.extname(fileData.originalname);
+    const fileName = path.basename(fileData.originalname, fileExt);
+    const newFileName = fileName + ".jpg";
+    const newPath = path.join(fileData.destination, newFileName);
+    fs.renameSync(fileData.path, newPath);
+    res.status(200).json({ error: "Картинка успешно загружена" });
+  } catch {
+    res.status(400).json({ error: "Ошибка при загрузке картинки" });
+  }
 });
 
 app.post("/createManga", urlencodedParser, (req, res) => {
@@ -201,8 +208,13 @@ app.post("/registration", (req, res) => {
     passwordUser: inputData.password,
     emailUser: inputData.email,
     avatarUrl: "uploads/userLogo",
-  }).then((data) => res.status(200).json({error: "Пользователь успешно создан"}))
-  .catch((err) => res.status(400).json({error: "Пользователь уже существует"}))
+  })
+    .then((data) =>
+      res.status(200).json({ error: "Пользователь успешно создан" })
+    )
+    .catch((err) =>
+      res.status(400).json({ error: "Пользователь уже существует" })
+    );
 });
 
 app.get("/authorization", (req, res) => {
